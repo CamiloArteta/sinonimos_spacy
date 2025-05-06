@@ -77,3 +77,14 @@ def insert_data():
             "cod_pais": pais,
             "cod_tienda": tiendas
         })
+
+def download_synonyms():
+    synonyms_path = "home/ubuntu/elasticsearch-8.xx.x/config/synonyms/synonyms.txt"
+    bucket_name = "appventas-searcher-s3"
+    file_key = "synonyms.txt"
+
+    if os.path.exists(synonyms_path):
+        os.remove(synonyms_path)
+        s3.download_file(bucket_name, file_key, synonyms_path)
+    else:
+        s3.download_file(bucket_name, file_key, synonyms_path)
